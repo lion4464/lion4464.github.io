@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="description" content="Rustambek Oripov — Java Backend Developer | Spring Boot | Microservices" />
+  <title>Rustambek Oripov — Backend Engineer</title>
+
+  <!-- Font (optional). If you want fully offline, remove this link. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text:#e9eefc;
+      --muted:#a9b3d1;
+      --line: rgba(255,255,255,.12);
+      --brand:#7c5cff;
+      --brand2:#20e3b2;
+      --warn:#ffcc66;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+
+    /* Light theme overrides */
+    [data-theme="light"]{
+      --bg:#f6f7fb;
+      --panel: rgba(15,23,42,.05);
+      --panel2: rgba(15,23,42,.07);
+      --text:#0b1220;
+      --muted:#475569;
+      --line: rgba(2,6,23,.12);
+      --shadow: 0 18px 50px rgba(15,23,42,.10);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(124,92,255,.35), transparent 60%),
+                  radial-gradient(1000px 600px at 90% 15%, rgba(32,227,178,.22), transparent 55%),
+                  radial-gradient(900px 700px at 40% 90%, rgba(255,204,102,.14), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 18px; }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,0));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    [data-theme="light"] .topbar{
+      background: linear-gradient(to bottom, rgba(246,247,251,.9), rgba(246,247,251,.55));
+      border-bottom: 1px solid rgba(2,6,23,.08);
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 220px;
+    }
+    .logo{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 55%),
+                  linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    [data-theme="light"] .logo{ border-color: rgba(2,6,23,.12); }
+    .brand b{ font-size: 14px; letter-spacing: .2px; }
+    .brand span{ display:block; font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+    .nav{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nav a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: .2s ease;
+      white-space: nowrap;
+    }
+    .nav a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: var(--panel);
+    }
+    .nav a.active{
+      color: var(--text);
+      border-color: rgba(124,92,255,.35);
+      background: linear-gradient(180deg, rgba(124,92,255,.18), rgba(124,92,255,.06));
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 220px;
+      justify-content: flex-end;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      font-size: 13px;
+      cursor:pointer;
+      transition: .2s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: var(--panel2); }
+    .btn.primary{
+      border-color: rgba(124,92,255,.45);
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(32,227,178,.16));
+    }
+    .btn.ghost{ background: transparent; }
+    .btn small{ color: var(--muted); font-weight: 500; }
+
+    /* Hero */
+    .hero{
+      padding: 46px 0 18px;
+    }
+    .grid-hero{
+      display:grid;
+      grid-template-columns: 1.35fr .85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 920px){
+      .grid-hero{ grid-template-columns: 1fr; }
+      .brand, .actions{ min-width: unset; }
+      .actions{ justify-content:flex-start; }
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+    [data-theme="light"] .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
+    }
+    .card-inner{ padding: 22px; }
+
+    .kicker{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, transparent 65%),
+                  linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+    }
+
+    h1{
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+      margin: 14px 0 10px;
+      letter-spacing: -.6px;
+    }
+    .sub{
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 68ch;
+      margin: 0 0 18px;
+    }
+
+    .meta-row{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-size: 13px;
+      color: var(--text);
+    }
+    .pill span{ color: var(--muted); font-size: 12px; }
+
+    .quick-actions{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+    /* Right card */
+    .mini{
+      display:flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .profile{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+    }
+    .avatar{
+      width: 56px; height: 56px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.45), transparent 60%),
+        linear-gradient(135deg, rgba(124,92,255,.85), rgba(32,227,178,.55));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: var(--shadow);
+      flex: 0 0 auto;
+    }
+    [data-theme="light"] .avatar{ border-color: rgba(2,6,23,.10); }
+
+    .profile b{ font-size: 16px; display:block; }
+    .profile p{ margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .kv .row{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-size: 13px;
+    }
+    .kv .row .k{ color: var(--muted); }
+    .kv .row .v{ font-weight: 600; }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.65);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    [data-theme="light"] .toast{
+      background: rgba(15,23,42,.85);
+    }
+    .toast.show{ opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+    /* Sections */
+    section{
+      padding: 18px 0;
+    }
+    .section-title{
+      display:flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 12px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.3px;
+    }
+    .section-title p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .list{
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      position: relative;
+      overflow:hidden;
+    }
+    .item:before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background: radial-gradient(900px 200px at 0% 0%, rgba(124,92,255,.16), transparent 60%);
+      opacity: .8;
+      pointer-events:none;
+    }
+    [data-theme="light"] .item:before{
+      background: radial-gradient(900px 200px at 0% 0%, rgba(124,92,255,.10), transparent 60%);
+    }
+
+    .item-head{
+      display:flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+    }
+    .item-head b{ font-size: 14px; }
+    .item-head .when{ color: var(--muted); font-size: 12px; }
+    .item .where{ color: var(--muted); font-size: 13px; margin-top: 4px; position: relative; }
+    .bullets{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      position: relative;
+    }
+    .bullets li{ margin: 6px 0; color: var(--text); font-size: 13px; }
+    .bullets li span{ color: var(--muted); }
+
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-size: 12px;
+      color: var(--text);
+      cursor: default;
+      transition: .15s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
+    .chip.muted{ color: var(--muted); }
+
+    .filters{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content: flex-end;
+    }
+    .search{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 8px 10px;
+      border-radius: 14px;
+      min-width: 220px;
+      max-width: 380px;
+      flex: 1;
+    }
+    .search input{
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .search input::placeholder{ color: rgba(169,179,209,.85); }
+    [data-theme="light"] .search input::placeholder{ color: rgba(71,85,105,.75); }
+
+    footer{
+      padding: 28px 0 36px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Reveal animation */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: .55s ease;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <b>Rustambek Oripov</b>
+            <span>Java Backend Developer • Spring Boot</span>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="actions">
+          <button class="btn ghost" id="themeBtn" type="button" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span> <small id="themeLabel">Dark</small>
+          </button>
+          <a class="btn primary" href="#contact">
+            ✉️ Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div class="grid-hero">
+        <div class="card reveal">
+          <div class="card-inner">
+            <div class="kicker"><span class="dot"></span> Results-driven backend engineer</div>
+
+            <h1>
+              Java Backend Developer<br /><span style="background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent;">Oripov Rustambek</span>
+            </h1>
+
+            <p class="sub" id="about">
+              Results-driven Software Development Engineer with 3+ years of experience delivering scalable, high-performance
+              solutions across Banking, FinTech, E-commerce, and Healthcare.
+            </p>
+
+            <div class="meta-row">
+              <div class="pill">📍 <b>Tashkent, Uzbekistan</b> <span>based</span></div>
+              <div class="pill">🧩 <b>Microservices</b> <span>event-driven</span></div>
+              <div class="pill">⚡ <b>Performance</b> <span>optimization</span></div>
+              <div class="pill">🔐 <b>Security</b> <span>Spring Security</span></div>
+            </div>
+
+            <div class="quick-actions">
+              <!-- NOTE: Put your CV PDF into the repo and change href below -->
+              <a class="btn" href="https://drive.google.com/file/d/1b7Gj3WLZn-AtJSRgLneemvBsERMYY7QP/view?usp=sharing" download>⬇️ Download CV</a>
+
+              <a class="btn" href="https://www.linkedin.com/in/rustambek-oripov" target="_blank" rel="noreferrer">
+                🔗 LinkedIn
+              </a>
+
+              <button class="btn" type="button" id="copyEmailBtn" data-copy="herofirst4464@gmail.com">
+                📋 Copy Email
+              </button>
+
+              <button class="btn" type="button" id="copyPhoneBtn" data-copy="+998976664812">
+                📋 Copy Phone
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mini reveal">
+          <div class="card-inner">
+            <div class="profile">
+              <div class="avatar" aria-hidden="true"></div>
+              <div>
+                <b>Rustambek Oripov</b>
+                <p>Java Backend Developer • Spring Boot • PostgreSQL/Oracle</p>
+              </div>
+            </div>
+
+            <div class="kv" style="margin-top: 14px;">
+              <div class="row">
+                <div class="k">Phone</div>
+                <div class="v">+998(97) 666-48-12</div>
+              </div>
+              <div class="row">
+                <div class="k">Email</div>
+                <div class="v">herofirst4464@gmail.com</div>
+              </div>
+              <div class="row">
+                <div class="k">Focus</div>
+                <div class="v">Backend • APIs • Observability</div>
+              </div>
+              <div class="row">
+                <div class="k">Languages</div>
+                <div class="v">Uzbek • English</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 14px; color: var(--muted); font-size: 13px;">
+              <b style="color:var(--text)">Highlights</b>
+              <ul class="bullets">
+                <li>Real-time KPI monitoring (50+ metrics) & analytics platform</li>
+                <li>Rate limiting, caching (Redis), async processing</li>
+                <li>CI/CD with Docker, blue-green, automated rollback</li>
+                <li>Grafana + Elastic APM with proactive alerts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>Experience</h2>
+            <p>Impact-focused backend delivery</p>
+          </div>
+        </div>
+
+        <div class="list">
+          <div class="item reveal">
+            <div class="item-head">
+              <b>Java Backend Developer — Aloqabank</b>
+              <div class="when">May 2025 – Present • Tashkent</div>
+            </div>
+            <div class="where">Retail & corporate financial services</div>
+            <ul class="bullets">
+              <li>Designed and implemented KPI monitoring & analytics platform integrated with Colvir CBS via Oracle PL/SQL, enabling real-time tracking for <b>50+</b> business metrics.</li>
+              <li>Built secure, scalable microservices backend with Spring Boot, Spring Security, PostgreSQL & Oracle; implemented rate limiting, caching (Redis) and async processing.</li>
+              <li>Developed GitLab CI/CD pipelines with Docker; introduced automated rollback and blue-green deployment strategy.</li>
+              <li>Integrated Grafana and Elastic APM; proactive alerts reduced critical incident resolution time by <b>~40%</b>.</li>
+            </ul>
+            <div class="chips" aria-label="Tech stack">
+              <span class="chip">Java</span>
+              <span class="chip">Spring Boot</span>
+              <span class="chip">Spring Security</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Oracle</span>
+              <span class="chip">PL/SQL</span>
+              <span class="chip">Redis</span>
+              <span class="chip">Docker</span>
+              <span class="chip">GitLab CI/CD</span>
+              <span class="chip">Grafana</span>
+              <span class="chip">Elastic APM</span>
+            </div>
+          </div>
+
+          <div class="item reveal">
+            <div class="item-head">
+              <b>Java Backend Developer — Maroqand LLC</b>
+              <div class="when">Dec 2022 – Mar 2025 • Tashkent</div>
+            </div>
+            <div class="where">E-commerce & enterprise solutions (Yandex Taxi payment integration)</div>
+            <ul class="bullets">
+              <li>Reduced API response times by <b>20–30%</b> on a platform with <b>10K+</b> daily transactions by query refactoring, indexes, and connection pooling.</li>
+              <li>Built event-driven architecture using Kafka & Spring Boot for real-time inventory/order/payment updates.</li>
+              <li>Designed REST endpoints for complex batch operations triggering thousands of internal microservice calls, keeping latency predictable under heavy load.</li>
+              <li>Developed interactive web features increasing customer engagement by <b>30–40%</b>.</li>
+            </ul>
+            <div class="chips" aria-label="Tech stack">
+              <span class="chip">Java</span>
+              <span class="chip">Spring Boot</span>
+              <span class="chip">Kafka</span>
+              <span class="chip">SQL Optimization</span>
+              <span class="chip">REST</span>
+              <span class="chip">Microservices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>Projects</h2>
+            <p>Selected work</p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="list">
+            <div class="item reveal">
+              <div class="item-head">
+                <b>KPI Monitoring & Analytics Platform</b>
+                <div class="when">May 2025 – Present</div>
+              </div>
+              <div class="where">Java, Spring Boot, Spring Security, Oracle PL/SQL, PostgreSQL, Redis, RabbitMQ, Docker, Grafana, Elastic APM</div>
+              <ul class="bullets">
+                <li>Backend web application with Spring Boot serving REST API; React as frontend.</li>
+                <li>Implemented Keycloak OAuth to get data from user’s repositories; visualized GitLab collaboration.</li>
+                <li>Used RabbitMQ + Redis for asynchronous tasks and performance.</li>
+              </ul>
+            </div>
+
+            <div class="item reveal">
+              <div class="item-head">
+                <b>Infokiosk Payment System</b>
+                <div class="when">Dec 2022 – May 2025</div>
+              </div>
+              <div class="where">Spring Web, WebClient, JWT, Spring Security, Gradle, PostgreSQL, RabbitMQ, Redis</div>
+              <ul class="bullets">
+                <li>Secure payment processing with multi-step transaction validation & fraud detection rules.</li>
+                <li>Integrated local bank APIs with asynchronous message handling via RabbitMQ.</li>
+                <li>RBAC, encrypted storage, audit logging; schema optimized for high-volume ACID workloads.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-inner">
+              <div class="section-title" style="margin-top:0;">
+                <div>
+                  <h2 style="margin:0;">What I’m good at</h2>
+                  <p>Practical strengths</p>
+                </div>
+              </div>
+
+              <div class="chips">
+                <span class="chip">RESTful API Development</span>
+                <span class="chip">Microservices Architecture</span>
+                <span class="chip">Event-Driven Architecture</span>
+                <span class="chip">Rate Limiting</span>
+                <span class="chip">Caching Strategies</span>
+                <span class="chip">Performance Optimization</span>
+                <span class="chip">Testing & Debugging</span>
+                <span class="chip">Observability</span>
+                <span class="chip">CI/CD</span>
+                <span class="chip">Security</span>
+              </div>
+
+              <div style="margin-top: 14px; color: var(--muted); font-size: 13px;">
+                <b style="color:var(--text)">Open to</b>
+                <ul class="bullets">
+                  <li>Backend roles: Spring Boot, microservices, fintech/banking systems</li>
+                  <li>Systems that need scale, stability and strong observability</li>
+                </ul>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px;">
+                <a class="btn" href="#skills">🧰 Skills</a>
+                <a class="btn" href="#contact">🤝 Let’s talk</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>Skills</h2>
+            <p>Filterable list</p>
+          </div>
+
+          <div class="filters">
+            <div class="search" title="Filter skills">
+              🔎 <input id="skillSearch" type="text" placeholder="Search skills (e.g. Spring, Redis, Kafka)..." />
+            </div>
+            <button class="btn" type="button" id="clearSkill">✖ Clear</button>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-inner">
+            <div style="display:grid; gap: 14px;">
+              <div>
+                <b>Programming Languages</b>
+                <div class="chips skill-chips" data-group="lang">
+                  <span class="chip">Java</span>
+                  <span class="chip">SQL (PostgreSQL)</span>
+                  <span class="chip">SQL (MySQL)</span>
+                  <span class="chip">Oracle PL/SQL</span>
+                  <span class="chip">HTML</span>
+                  <span class="chip">XML</span>
+                </div>
+              </div>
+
+              <div>
+                <b>Frameworks</b>
+                <div class="chips skill-chips" data-group="fw">
+                  <span class="chip">Spring Boot</span>
+                  <span class="chip">Spring Security</span>
+                  <span class="chip">Spring MVC</span>
+                  <span class="chip">Spring Data JPA</span>
+                  <span class="chip">Spring Cloud</span>
+                </div>
+              </div>
+
+              <div>
+                <b>Developer Tools</b>
+                <div class="chips skill-chips" data-group="tools">
+                  <span class="chip">Git (GitHub)</span>
+                  <span class="chip">GitLab</span>
+                  <span class="chip">Bitbucket</span>
+                  <span class="chip">Docker</span>
+                  <span class="chip">GitLab CI/CD</span>
+                  <span class="chip">Grafana</span>
+                  <span class="chip">ELK Stack</span>
+                  <span class="chip">Kibana</span>
+                  <span class="chip">Keycloak</span>
+                  <span class="chip">Metabase</span>
+                  <span class="chip">Redis</span>
+                  <span class="chip">Kafka</span>
+                  <span class="chip">RabbitMQ</span>
+                  <span class="chip">Jira</span>
+                  <span class="chip">Notion</span>
+                  <span class="chip">Slack</span>
+                </div>
+              </div>
+
+              <div>
+                <b>Concepts & Practices</b>
+                <div class="chips skill-chips" data-group="concept">
+                  <span class="chip">RESTful API Development</span>
+                  <span class="chip">Microservices Architecture</span>
+                  <span class="chip">SOLID Principles</span>
+                  <span class="chip">Event-Driven Architecture</span>
+                  <span class="chip">Rate Limiting</span>
+                  <span class="chip">Caching Strategies</span>
+                  <span class="chip">Performance Optimization</span>
+                  <span class="chip">Testing & Debugging</span>
+                </div>
+              </div>
+
+              <div>
+                <b>Languages</b>
+                <div class="chips skill-chips" data-group="spoken">
+                  <span class="chip">English (Advanced)</span>
+                  <span class="chip">Uzbek (Native)</span>
+                </div>
+              </div>
+
+              <p style="margin:0;color:var(--muted);font-size:13px;">
+                Tip: yuqoridagi qidiruvga yozsangiz, mos skill’lar ajralib chiqadi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>Education</h2>
+            <p>Academic background</p>
+          </div>
+        </div>
+
+        <div class="list">
+          <div class="item reveal">
+            <div class="item-head">
+              <b>Tashkent Information Technology University</b>
+              <div class="when">Aug 2016 – May 2020</div>
+            </div>
+            <div class="where">Bachelor of Computer Engineering • Tashkent, Uzbekistan</div>
+          </div>
+
+          <div class="item reveal">
+            <div class="item-head">
+              <b>Tashkent Information Technology University</b>
+              <div class="when">Aug 2020 – May 2022</div>
+            </div>
+            <div class="where">Master’s degree of Information Security • Tashkent, Uzbekistan</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>Contact</h2>
+            <p>Let’s build something great</p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card reveal">
+            <div class="card-inner">
+              <b style="font-size:15px;">Reach me</b>
+              <p style="margin:8px 0 14px; color: var(--muted); font-size: 13px;">
+                Email yoki telefon orqali bog‘laning. LinkedIn’da ham yozishingiz mumkin.
+              </p>
+
+              <div class="kv">
+                <div class="row">
+                  <div class="k">Email</div>
+                  <div class="v"><a href="mailto:herofirst4464@gmail.com">herofirst4464@gmail.com</a></div>
+                </div>
+                <div class="row">
+                  <div class="k">Phone</div>
+                  <div class="v"><a href="tel:+998976664812">+998(97) 666-48-12</a></div>
+                </div>
+                <div class="row">
+                  <div class="k">LinkedIn</div>
+                  <div class="v">
+                    <a href="https://www.linkedin.com/in/rustambek-oripov" target="_blank" rel="noreferrer">
+                      linkedin.com/in/rustambek-oripov
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;">
+                <button class="btn" type="button" data-copy="herofirst4464@gmail.com">📋 Copy Email</button>
+                <button class="btn" type="button" data-copy="+998976664812">📋 Copy Phone</button>
+                <a class="btn primary" href="mailto:herofirst4464@gmail.com?subject=Interview%20/%20Opportunity&body=Hello%20Rustambek,%0D%0A%0D%0A">✉️ Email me</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="card-inner">
+              <b style="font-size:15px;">Quick note</b>
+              <p style="margin:8px 0 14px; color: var(--muted); font-size: 13px;">
+                GitHub Pages’da ishlatish uchun bu faylni repo’ga `index.html` qilib joylang.
+              </p>
+
+              <div class="item" style="margin:0;">
+                <div class="item-head">
+                  <b>Deploy steps (GitHub Pages)</b>
+                  <div class="when">~2 minutes</div>
+                </div>
+                <ul class="bullets">
+                  <li>Repo oching (masalan: <span>username.github.io</span>).</li>
+                  <li>Shu `index.html` ni root’ga qo‘ying.</li>
+                  <li>Settings → Pages → Deploy from a branch → main / (root).</li>
+                  <li>Agar CV PDF ham bo‘lsa, repo’ga qo‘ying va yuqoridagi “Download CV” link ishlaydi.</li>
+                </ul>
+              </div>
+
+              <p style="margin:12px 0 0; color: var(--muted); font-size: 12px;">
+                Xohlasangiz, keyin “Projects” bo‘limiga GitHub linklar va screenshot’lar ham qo‘shib beraman.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>© <span id="year"></span> Rustambek Oripov</div>
+          <div style="color: var(--muted);">Built with vanilla HTML/CSS/JS • GitHub Pages ready</div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('themeBtn');
+      const themeIcon = document.getElementById('themeIcon');
+      const themeLabel = document.getElementById('themeLabel');
+      const year = document.getElementById('year');
+      year.textContent = new Date().getFullYear();
+
+      // Theme (persist)
+      const saved = localStorage.getItem('theme');
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      const initial = saved || (prefersLight ? 'light' : 'dark');
+      setTheme(initial);
+
+      themeBtn.addEventListener('click', () => {
+        const next = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+        setTheme(next);
+        localStorage.setItem('theme', next);
+      });
+
+      function setTheme(mode){
+        root.setAttribute('data-theme', mode);
+        if(mode === 'light'){
+          themeIcon.textContent = '☀️';
+          themeLabel.textContent = 'Light';
+        } else {
+          themeIcon.textContent = '🌙';
+          themeLabel.textContent = 'Dark';
+        }
+      }
+
+      // Toast
+      const toast = document.getElementById('toast');
+      let toastTimer = null;
+      function showToast(msg){
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1400);
+      }
+
+      // Copy helpers
+      async function copyText(t){
+        try{
+          await navigator.clipboard.writeText(t);
+          showToast('Copied: ' + t);
+        }catch(e){
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = t;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+          showToast('Copied: ' + t);
+        }
+      }
+
+      document.querySelectorAll('[data-copy]').forEach(btn=>{
+        btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy')));
+      });
+
+      // Dedicated buttons
+      const copyEmailBtn = document.getElementById('copyEmailBtn');
+      const copyPhoneBtn = document.getElementById('copyPhoneBtn');
+      copyEmailBtn?.addEventListener('click', () => copyText(copyEmailBtn.dataset.copy));
+      copyPhoneBtn?.addEventListener('click', () => copyText(copyPhoneBtn.dataset.copy));
+
+      // Active nav on scroll
+      const navLinks = Array.from(document.querySelectorAll('.nav a'));
+      const sections = navLinks
+        .map(a => document.querySelector(a.getAttribute('href')))
+        .filter(Boolean);
+
+      const obsNav = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            navLinks.forEach(a => a.classList.remove('active'));
+            const id = '#' + entry.target.id;
+            const active = navLinks.find(a => a.getAttribute('href') === id);
+            active && active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0.01 });
+
+      sections.forEach(s => obsNav.observe(s));
+
+      // Reveal on scroll
+      const revealEls = document.querySelectorAll('.reveal');
+      const obsReveal = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            en.target.classList.add('show');
+            obsReveal.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.10 });
+
+      revealEls.forEach(el => obsReveal.observe(el));
+
+      // Skills filter
+      const skillSearch = document.getElementById('skillSearch');
+      const clearSkill = document.getElementById('clearSkill');
+      const allChips = Array.from(document.querySelectorAll('.skill-chips .chip'));
+
+      function norm(s){ return (s || '').toLowerCase().trim(); }
+
+      function applyFilter(q){
+        const query = norm(q);
+        allChips.forEach(ch => {
+          const text = norm(ch.textContent);
+          const match = !query || text.includes(query);
+          ch.style.opacity = match ? '1' : '.22';
+          ch.style.filter = match ? 'none' : 'grayscale(1)';
+        });
+      }
+
+      skillSearch.addEventListener('input', (e) => applyFilter(e.target.value));
+      clearSkill.addEventListener('click', () => {
+        skillSearch.value = '';
+        applyFilter('');
+        skillSearch.focus();
+      });
+
+      // Small polish: prevent “#” jump from focusing sticky header too much
+      window.addEventListener('hashchange', () => {
+        const el = document.querySelector(location.hash);
+        if(el){
+          const y = el.getBoundingClientRect().top + window.scrollY - 92;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
