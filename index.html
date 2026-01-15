@@ -442,6 +442,133 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* ------------------------------
+   Responsive layout (all displays)
+---------------------------------*/
+
+/* Large desktops */
+@media (min-width: 1200px){
+  .wrap{ padding: 0 22px; }
+  .card-inner{ padding: 26px; }
+}
+
+/* Laptops */
+@media (max-width: 1199px){
+  .topbar-inner{ gap: 10px; }
+  .nav{ gap: 10px; }
+  .nav a{ padding: 7px 9px; }
+}
+
+/* Tablets */
+@media (max-width: 991px){
+  .topbar-inner{
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Make nav horizontally scrollable so it doesn't wrap ugly */
+  .nav{
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;        /* Firefox */
+  }
+  .nav::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
+  .nav a{ flex: 0 0 auto; }
+
+  .actions{
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .hero{ padding: 34px 0 10px; }
+  .grid-hero{ grid-template-columns: 1fr; }
+  .two-col{ grid-template-columns: 1fr; }
+
+  .card{ border-radius: 22px; }
+  .item{ border-radius: 18px; }
+}
+
+/* Large phones */
+@media (max-width: 767px){
+  .wrap{ padding: 0 14px; }
+
+  .brand{ min-width: unset; }
+  .logo{ width: 34px; height: 34px; border-radius: 12px; }
+  .brand b{ font-size: 13px; }
+  .brand span{ font-size: 11px; }
+
+  .card-inner{ padding: 16px; }
+  h1{ margin: 12px 0 8px; }
+
+  .meta-row{ gap: 8px; }
+  .pill{
+    padding: 9px 10px;
+    border-radius: 14px;
+    font-size: 12px;
+  }
+  .pill span{ font-size: 11px; }
+
+  .btn{
+    padding: 10px 11px;
+    border-radius: 14px;
+  }
+
+  .section-title{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .search{ min-width: 180px; }
+}
+
+/* Small phones */
+@media (max-width: 479px){
+  .topbar-inner{ padding: 10px 0; }
+
+  .quick-actions,
+  .actions{
+    gap: 8px;
+  }
+
+  /* Buttons full width on small screens */
+  .quick-actions .btn,
+  .actions .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .profile{
+    align-items: flex-start;
+  }
+  .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+  }
+
+  .kv .row{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .bullets{ padding-left: 16px; }
+}
+
+/* Reduce animations for accessibility */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  .reveal{
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .btn:hover{ transform: none !important; }
+}
+
   </style>
 </head>
 
